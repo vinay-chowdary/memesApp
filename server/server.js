@@ -2,7 +2,8 @@
 
 const express = require('express');
 const mongoose = require('mongoose');                    //  ORM for mongoDB
-var cors = require('cors');                              //  for cross origin resource sharing
+const cors = require('cors');                              //  for cross origin resource sharing
+const logger = require('./logs/logger')
 
 
 
@@ -15,12 +16,19 @@ app.use(express.json());
 
 
 
+
 //  database connection running at 27017 on localhost
 
-mongoose.connect('mongodb://localhost:27107/memesDB',
+mongoose.connect('mongodb://localhost:27017/memesDB',
     { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("database connection successful"))
-    .catch((err) => console.log(err.message));      //TODO: add log file instead of console log
+    .then(() => (
+        logger.log('info', "database connection established")
+    ))
+    .catch((err) => (
+        logger.log('info', `database connection failed ${err.message}`
+        ))
+    );
+
 
 
 
