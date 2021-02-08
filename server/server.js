@@ -6,6 +6,11 @@ const cors = require('cors');                              //  for cross origin 
 const logger = require('./logs/logger')
 
 
+//  routes
+
+const memesRoute = require('./routes/memes')
+
+
 
 //  middleware
 
@@ -18,6 +23,7 @@ app.use(express.json());
 
 
 //  database connection running at 27017 on localhost
+//  logs at ./logs
 
 mongoose.connect('mongodb://localhost:27017/memesDB',
     { useNewUrlParser: true, useUnifiedTopology: true })
@@ -29,6 +35,10 @@ mongoose.connect('mongodb://localhost:27017/memesDB',
         ))
     );
 
+
+
+
+app.use('/memes', memesRoute);
 
 
 
