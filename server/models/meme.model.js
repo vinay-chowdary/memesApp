@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const memeSchema = new mongoose.Schema({
-    nameOfPerson: String,
+    name: String,
     caption: String,
     url: String
 });

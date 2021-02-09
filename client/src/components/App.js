@@ -2,9 +2,17 @@ import React from 'react'
 
 function App() {
     return (
-        <div>
-            <h1>Hello from App</h1>
-        </div>
+        <form method="post" action="http://localhost:8081/memes">
+            <input type="text" name="nameOfPerson" />
+            <br></br>
+            <input type="text" name="caption" />
+            <br></br>
+
+            <input type="text" name="url" />
+            <br></br>
+
+            <button type="submit">submit</button>
+        </form>
     )
 }
 
