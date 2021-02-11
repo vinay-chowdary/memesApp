@@ -3,7 +3,7 @@ import React from 'react'
 function App() {
     return (
         <form method="post" action="http://localhost:8081/memes">
-            <input type="text" name="nameOfPerson" />
+            <input type="text" name="name" />
             <br></br>
             <input type="text" name="caption" />
             <br></br>
