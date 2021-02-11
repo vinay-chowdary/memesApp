@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');                    //  ORM for mongoDB
 const cors = require('cors');                              //  for cross origin resource sharing
 const logger = require('./logs/logger')
+const page404 = require('./page404')
 
 
 //  routes
@@ -26,7 +27,7 @@ app.use(express.json());
 //  logs at ./logs
 
 mongoose.connect('mongodb://localhost:27017/memesDB',
-    { useNewUrlParser: true, useUnifiedTopology: true })
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => (
         logger.log('info', "database connection established")
     ))
@@ -40,6 +41,8 @@ mongoose.connect('mongodb://localhost:27017/memesDB',
 
 app.use('/memes', memesRoute);
 
+//  404 error
+app.all('*', page404);
 
 
 //  listening on port 8081 by default
