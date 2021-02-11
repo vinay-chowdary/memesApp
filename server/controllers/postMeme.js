@@ -1,45 +1,6 @@
 const { fetch, logger, Meme } = require('./requirements')
-
-
-
-//  check whether the the given url is of Image.
-
-const isImage = async (url) => {
-    try {
-
-        const checkExtension = url.match(/\.(jpg|jpeg|png|gif)/);
-        const { status, headers } = await fetch(url, { method: 'HEAD' });
-        if (status === 200 && checkExtension)
-            return true
-        else if (status === 200 && !checkExtension) {
-            const Headers = [...headers];
-            Headers.forEach(header => {
-                if (header[0] === 'content-type') {
-                    if (header[1].match(/image\/(jpg|jpeg|png|gif)/)) {
-                        return true
-                    }
-                }
-            })
-        }
-        else
-            throw new Error(JSON.stringify({ status, message: "image not found" }));
-    }
-    catch (err) {
-        logger.log('error', "cannot deal with base64 format as of now")
-        throw new Error(JSON.stringify({ status: 400, message: "cannot deal with base64 encoding, please provide absolute address (https://example.com/imagename.jpg)" }))
-    }
-}
-
-
-
-//  check if the current meme already exists
-
-const isDuplicate = async (meme) => {
-    const duplicate = await Meme.findOne(meme)
-    if (duplicate)
-        throw new Error(JSON.stringify({ status: 409, message: { duplicateFound: true, duplicate } }))
-
-}
+const isImage = require('./isImage')
+const isDuplicate = require('./isDuplicate')
 
 
 
@@ -68,7 +29,7 @@ const postMeme = async (req, res) => {
 
         logger.log('error', err.message)
         const { status, message } = JSON.parse(err.message)
-        res.header("Content-Type", 'application/json');
+        res.header("content-type", 'application/json');
         res.status(status).json({ message })
 
     }
