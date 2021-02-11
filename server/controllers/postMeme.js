@@ -5,12 +5,19 @@ const { fetch, logger, Meme } = require('./requirements')
 //  check whether the the given url is of Image.
 
 const isImage = async (url) => {
-    const checkExtension = url.match(/\.(jpg|jpeg|png|gif)/);
-    const { status } = await fetch(url, { method: 'HEAD' });
-    if (status === 200 && checkExtension)
-        return true
-    else
-        throw new Error(JSON.stringify({ status, message: "image not found" }));
+    try {
+
+        const checkExtension = url.match(/\.(jpg|jpeg|png|gif)/);
+        const { status } = await fetch(url, { method: 'HEAD' });
+        if (status === 200 && checkExtension)
+            return true
+        else
+            throw new Error(JSON.stringify({ status, message: "image not found" }));
+    }
+    catch (err) {
+        logger.log('error', "cannot deal with base64 format as of now")
+        throw new Error(JSON.stringify({ status: 400, message: "cannot deal with base64 encoding, please provide absolute address (https://example.com/imagename.jpg)" }))
+    }
 }
 
 
