@@ -8,9 +8,19 @@ const isImage = async (url) => {
     try {
 
         const checkExtension = url.match(/\.(jpg|jpeg|png|gif)/);
-        const { status } = await fetch(url, { method: 'HEAD' });
+        const { status, headers } = await fetch(url, { method: 'HEAD' });
         if (status === 200 && checkExtension)
             return true
+        else if (status === 200 && !checkExtension) {
+            const Headers = [...headers];
+            Headers.forEach(header => {
+                if (header[0] === 'content-type') {
+                    if (header[1].match(/image\/(jpg|jpeg|png|gif)/)) {
+                        return true
+                    }
+                }
+            })
+        }
         else
             throw new Error(JSON.stringify({ status, message: "image not found" }));
     }
@@ -41,7 +51,7 @@ const postMeme = async (req, res) => {
         if (name && caption && url) {                           // if all the fields are provided
 
             await isImage(url);                                 //  check url has image
-            const meme = { name, caption, url };
+            const meme = { name, url, caption };
             await isDuplicate(meme)                             //  check for duplicate meme
 
             const [{ _id }] = await Meme.insertMany([meme])     //  insert data into database
