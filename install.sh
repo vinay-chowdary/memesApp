@@ -10,7 +10,8 @@ sudo apt install -y docker.io
 curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-sudo apt install nodemon
+npm install nodemon
 
 npm install
+npm run client-install
 docker run -d -p 27107:27107 --name  mongoDB mongo
