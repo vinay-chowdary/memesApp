@@ -6,7 +6,13 @@ const paginate = () => async (req, res, next) => {
     const limit = 100;
     const start = (page - 1) * limit
     const paginatedResults = {};
-    const totalDocuments = await Meme.countDocuments().exec()
+    let totalDocuments = 0;
+    try {
+        totalDocuments = await Meme.countDocuments()
+    }
+    catch (err) {
+        console.log(err.message);
+    }
     const totalPages = Math.ceil(totalDocuments / limit);
 
 
