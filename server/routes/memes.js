@@ -7,7 +7,7 @@ router.route('/')
     /*
     @swagger
     */
-    .get(paginate(), fetchMemes)
+    .get(fetchMemes)
     .post(postMeme)
 
 router.route('/:id')

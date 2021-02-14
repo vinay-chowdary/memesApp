@@ -1,8 +1,8 @@
 const getMemesReducer = (state = [], action) => {
     switch (action.type) {
         case 'GET_MEMES':
-            if (action.payload.memes)
-                state = [...state, ...action.payload.memes]
+            if (action.payload)
+                state = [...state, ...action.payload]
             console.log(state);
             return state
 
