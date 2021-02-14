@@ -1,0 +1,26 @@
+.form {
+  max-width: 600px;
+  margin: auto;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+.form header {
+  align-self: flex-start;
+  color: #364f6b;
+}
+.form div {
+  width: 100%;
+}
+.form .submit-button {
+  align-self: flex-end;
+  background-color: #364f6b;
+  transition: all ease-in-out 0.2s;
+  border: #364f6b solid 1px;
+}
+
+.form .submit-button:hover {
+  background-color: #2f455d;
+}
+.form .submit-button:active {
+  transform: scale(0.98);
+}

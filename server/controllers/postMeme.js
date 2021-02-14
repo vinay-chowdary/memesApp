@@ -30,7 +30,7 @@ const postMeme = async (req, res) => {
         logger.log('error', err.message)
         const { status, message } = JSON.parse(err.message)
         res.header("content-type", 'application/json');
-        res.status(status).json({ message })
+        res.json({ message })
 
     }
 }

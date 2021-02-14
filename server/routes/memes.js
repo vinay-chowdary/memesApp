@@ -1,7 +1,12 @@
 const router = require('express').Router()
 const { fetchMemes, postMeme, paginate, getMemeById, patchMeme } = require('../controllers')
 
+
+
 router.route('/')
+    /*
+    @swagger
+    */
     .get(paginate(), fetchMemes)
     .post(postMeme)
 

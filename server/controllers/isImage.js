@@ -11,7 +11,7 @@ const isImage = async (url) => {
         var { status, headers } = await fetch(url, { method: 'HEAD' });
     }
     catch (err) {
-        logger.log('error', "cannot deal with base64 format as of now")
+        logger.log('error', "cannot find the url, please check it again")
         throw new Error(JSON.stringify({ status: 400, message: "cannot deal with base64 encoding, please provide absolute address (https://example.com/imagename.jpg)" }))
     }
     if (status === 200 && checkExtension)
