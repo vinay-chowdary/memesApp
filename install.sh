@@ -14,4 +14,6 @@ npm install nodemon
 
 npm install
 npm run client-install
-docker run -d -p 27107:27107 --name  mongoDB mongo
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+sudo docker run -d -p 27107:27107 --name mdb mongo

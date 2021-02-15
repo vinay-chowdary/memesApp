@@ -1,5 +1,5 @@
 const getMemes = () => async dispatch => {
-    const response = await fetch('http://localhost:8081/memes')
+    const response = await fetch('http://3.22.221.150:8081/memes')
     const data = await response.json()
     if (response.status !== 200) {
         dispatch({

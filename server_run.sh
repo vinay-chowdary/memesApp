@@ -2,4 +2,5 @@
 
 cd server
 
+sudo docker start mdb
 npm run dev

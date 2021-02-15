@@ -2,3 +2,5 @@ server/logs/app.log
 client/node_modules
 server/node_modules
 server/.env
+.vscode/
+client/build

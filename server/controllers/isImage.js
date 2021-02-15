@@ -12,7 +12,7 @@ const isImage = async (url) => {
     }
     catch (err) {
         logger.log('error', "cannot find the url, please check it again")
-        throw new Error(JSON.stringify({ status: 400, message: "cannot deal with base64 encoding, please provide absolute address (https://example.com/imagename.jpg)" }))
+        throw new Error(JSON.stringify({ status: 400, message: "check the image url(doesn't find image)" }))
     }
     if (status === 200 && checkExtension)
         return true

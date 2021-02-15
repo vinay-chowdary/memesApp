@@ -2,7 +2,7 @@ const submitForm = (newMeme) => async (dispatch) => {
 
     //add to database
 
-    const response = await fetch('http://localhost:8081/memes', {
+    const response = await fetch('http://3.22.221.150:8081/memes', {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -10,6 +10,7 @@ const submitForm = (newMeme) => async (dispatch) => {
         body: JSON.stringify(newMeme)
     })
     const data = await response.json()
+    const _id = data.id
     if (response.status !== 201) {
         dispatch({
             type: 'ON_ERROR',
@@ -24,7 +25,7 @@ const submitForm = (newMeme) => async (dispatch) => {
         //add to ui
         dispatch({
             type: 'ADD_NEW_MEME',
-            payload: newMeme
+            payload: { _id, ...newMeme }
         })
     }
 
