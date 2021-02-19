@@ -16,4 +16,4 @@ npm install
 npm run client-install
 sudo groupadd docker
 sudo gpasswd -a $USER docker
-sudo docker run -d -p 27107:27107 --name mdb mongo
+sudo docker run -d -p 27017:27017 --name mdb mongo
