@@ -2,7 +2,7 @@ const submitForm = (newMeme) => async (dispatch) => {
 
     //add to database
 
-    const response = await fetch('http://3.22.221.150:8081/memes', {
+    const response = await fetch('http://localhost:8081/memes', {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
