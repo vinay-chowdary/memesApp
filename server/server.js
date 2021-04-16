@@ -5,6 +5,7 @@ const mongoose = require('mongoose');                    //  ORM for mongoDB
 const cors = require('cors');                              //  for cross origin resource sharing
 const logger = require('./logs/logger')
 const page404 = require('./page404')
+const path = require("path")
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocument = require('./swagger.json')
 
@@ -21,6 +22,7 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../client/build')))
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
@@ -40,7 +42,9 @@ mongoose.connect('mongodb://localhost:27017/memesDB',
     );
 
 
-
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 app.use('/memes', memesRoute);
 

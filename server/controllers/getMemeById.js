@@ -18,7 +18,7 @@ const getMemeById = async (req, res) => {
                 res.status(200).json(meme)
         }
         else
-            throw new Error(JSON.stringify({ status: 404, message: "Invalid object Id" }))
+            throw new Error(JSON.stringify({ status: 404, message: `Invalid object Id or Meme with ID = "${id}" not found`}))
 
 
     }
