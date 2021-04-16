@@ -8,7 +8,9 @@ const Card = (props) => {
             <div className="meme-card flex-column" style={{ "color": "#000" }} >
                 <h3 className="meme-name">{props.name}</h3>
                 <p className="meme-caption">{props.caption}</p>
-                <img src={props.url} alt="not found" />
+                <div>
+                    <img src={props.url} alt="not found" />
+                </div>
 
             </div >
         </Link>

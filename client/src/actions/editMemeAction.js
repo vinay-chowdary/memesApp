@@ -1,6 +1,6 @@
 const editMeme = (editMeme, id) => async dispatch => {
     try {
-        const response = await fetch(`/memes/${id}`, {
+        const response = await fetch(`/api/memes/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

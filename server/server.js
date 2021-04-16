@@ -5,6 +5,8 @@ const mongoose = require('mongoose');                    //  ORM for mongoDB
 const cors = require('cors');                              //  for cross origin resource sharing
 const logger = require('./logs/logger')
 const page404 = require('./page404')
+
+require('dotenv').config()
 const path = require("path")
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocument = require('./swagger.json')
@@ -31,7 +33,8 @@ app.use(express.static(path.join(__dirname, '../client/build')))
 //  database connection running at 27017 on localhost
 //  logs at ./logs
 
-mongoose.connect('mongodb://localhost:27017/memesDB',
+// mongoose.connect('mongodb://localhost:27017/memesDB',
+mongoose.connect(`mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_USER_PASSWORD}@memes-cluster.hrz2j.mongodb.net/${process.env.DB_NAME}`,
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => (
         logger.log('info', "database connection established")
@@ -43,13 +46,17 @@ mongoose.connect('mongodb://localhost:27017/memesDB',
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    res.sendFile(path.join(__dirname,'../client/build/index.html'));
 });
 
-app.use('/memes', memesRoute);
+app.use('/api/memes', memesRoute);
 
 //  404 error
-app.all('*', page404);
+// app.all('/*', page404);
+app.all('/*', (req,res)=>{
+    res.sendFile(path.join(__dirname,'../client/build/index.html'));
+
+});
 
 
 //  listening on port 8081 by default
