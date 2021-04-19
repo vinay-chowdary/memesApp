@@ -1,6 +1,6 @@
 const editMeme = (editMeme, id) => async dispatch => {
     try {
-        const response = await fetch(`/api/memes/${id}`, {
+        const response = await fetch(`https://memes-gallery-api.herokuapp.com/memes/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

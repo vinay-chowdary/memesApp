@@ -17,7 +17,7 @@ const Form = (props) => {
         url: "",
         caption: ""
     });
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let edit = {}
         if (newMeme.name !== "") {
@@ -29,7 +29,9 @@ const Form = (props) => {
         if (newMeme.caption !== "") {
             editMeme.caption = newMeme.caption;
         }
-        props.heading ? dispatch(editMeme(edit, props.id)) : dispatch(submit(newMeme))
+        props.isModal && props.closeOnSubmit()
+        props.heading ? await dispatch(editMeme(edit, props.id)) : dispatch(submit(newMeme))
+        window.location.reload()
     }
 
     const handleChange = (e) => {

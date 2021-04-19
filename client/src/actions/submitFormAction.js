@@ -2,7 +2,7 @@ const submitForm = (newMeme) => async (dispatch) => {
 
     //add to database
 
-    const response = await fetch('/api/memes', {
+    const response = await fetch('https://memes-gallery-api.herokuapp.com/memes', {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

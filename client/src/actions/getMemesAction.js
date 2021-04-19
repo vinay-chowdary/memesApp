@@ -1,5 +1,5 @@
 const getMemes = () => async dispatch => {
-    const response = await fetch('api/memes')
+    const response = await fetch('https://memes-gallery-api.herokuapp.com/memes')
     const data = await response.json()
     if (response.status !== 200) {
         dispatch({

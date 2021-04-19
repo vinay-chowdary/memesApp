@@ -46,17 +46,13 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_USE
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'../client/build/index.html'));
+    res.redirect("https://google.com")
 });
 
-app.use('/api/memes', memesRoute);
+app.use('/memes', memesRoute);
 
 //  404 error
-// app.all('/*', page404);
-app.all('/*', (req,res)=>{
-    res.sendFile(path.join(__dirname,'../client/build/index.html'));
-
-});
+app.all('/*', page404);
 
 
 //  listening on port 8081 by default
