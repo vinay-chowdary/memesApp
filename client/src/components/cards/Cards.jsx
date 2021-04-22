@@ -5,7 +5,7 @@ import Card from './Card'
 import './card.css'
 
 
-const Cards = () => {
+const Cards = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getMemes())
@@ -22,6 +22,7 @@ const Cards = () => {
                         name={meme.name}
                         caption={meme.caption}
                         url={meme.url}
+                        getId={props.getId}
                     />)
             )}
         </div>

@@ -1,17 +1,22 @@
-const router = require('express').Router()
-const { fetchMemes, postMeme, paginate, getMemeById, patchMeme } = require('../controllers')
+const router = require("express").Router();
+const {
+  fetchMemes,
+  postMeme,
+  paginate,
+  getMemeById,
+  patchMeme,
+  deleteAllMemes,
+} = require("../controllers");
 
-
-
-router.route('/')
-    /*
+router
+  .route("/")
+  /*
     @swagger
     */
-    .get(fetchMemes)
-    .post(postMeme)
+  .get(fetchMemes)
+  .post(postMeme)
+  .delete(deleteAllMemes);
 
-router.route('/:id')
-    .get(getMemeById)
-    .patch(patchMeme)
+router.route("/:id").get(getMemeById).patch(patchMeme);
 
-module.exports = router
+module.exports = router;

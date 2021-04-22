@@ -9,7 +9,6 @@ import editMeme from '../../actions/editMemeAction'
 
 
 
-
 const Form = (props) => {
     const dispatch = useDispatch();
     const [newMeme, setNewMeme] = useState({
@@ -27,11 +26,17 @@ const Form = (props) => {
             edit.url = newMeme.url;
         }
         if (newMeme.caption !== "") {
-            editMeme.caption = newMeme.caption;
+            edit.caption = newMeme.caption;
         }
         props.isModal && props.closeOnSubmit()
+        props.isModal && props.onClose()
         props.heading ? await dispatch(editMeme(edit, props.id)) : dispatch(submit(newMeme))
-        window.location.reload()
+        props.isModal && window.location.reload()
+        setNewMeme({
+            name: "",
+            caption: "",
+            url: ""
+        })
     }
 
     const handleChange = (e) => {
@@ -51,6 +56,7 @@ const Form = (props) => {
                     label="Name"
                     variant="outlined"
                     autoComplete="off"
+                    value={newMeme.name}
                     required={props.heading ? false : true}
                     name="name"
                     onChange={handleChange}
@@ -67,6 +73,7 @@ const Form = (props) => {
                     variant="outlined"
                     autoComplete="off"
                     required={props.heading ? false : true}
+                    value={newMeme.caption}
 
                     onChange={handleChange}
                     name="caption"
@@ -83,6 +90,7 @@ const Form = (props) => {
                     variant="outlined"
                     autoComplete="off"
                     required={props.heading ? false : true}
+                    value={newMeme.url}
 
                     name="url"
                     onChange={handleChange}
